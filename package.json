@@ -1,0 +1,38 @@
+{
+  "name": "@you/pi-loop",
+  "version": "0.1.0",
+  "description": "A /loop slash command for the Pi coding agent — re-run a prompt on an interval inside the current session (agentic cron).",
+  "type": "module",
+  "license": "MIT",
+  "keywords": [
+    "pi",
+    "pi-coding-agent",
+    "extension",
+    "loop",
+    "scheduler",
+    "cron"
+  ],
+  "pi": {
+    "extensions": [
+      "dist/index.js"
+    ]
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node test/engine.mjs && node test/slash.mjs && node test/widget.mjs && node test/filemodes.mjs && node test/parse.mjs && node test/sentinel.mjs && node test/persist.mjs && node test/features.mjs && node test/improvements.mjs",
+    "dev": "pi -e ./src/index.ts"
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": ">=0.79.0"
+  },
+  "devDependencies": {
+    "@earendil-works/pi-coding-agent": "^0.79.0",
+    "@types/node": "^25.9.3",
+    "typescript": "^5.6.0"
+  }
+}
