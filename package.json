@@ -1,6 +1,6 @@
 {
-  "name": "@you/pi-loop",
-  "version": "0.1.0",
+  "name": "@j3ssie/pi-loop",
+  "version": "0.1.1",
   "description": "A /loop slash command for the Pi coding agent — re-run a prompt on an interval inside the current session (agentic cron).",
   "type": "module",
   "license": "MIT",
@@ -19,13 +19,16 @@
   },
   "files": [
     "dist",
-    "README.md"
+    "README.md",
+    "LICENSE"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node test/engine.mjs && node test/slash.mjs && node test/widget.mjs && node test/filemodes.mjs && node test/parse.mjs && node test/sentinel.mjs && node test/persist.mjs && node test/features.mjs && node test/improvements.mjs",
-    "dev": "pi -e ./src/index.ts"
+    "build": "bun build src/index.ts --outdir dist --target node --format esm --external @earendil-works/pi-coding-agent",
+    "typecheck": "tsc -p tsconfig.json",
+    "test": "bun ./test/engine.mjs && bun ./test/slash.mjs && bun ./test/widget.mjs && bun ./test/filemodes.mjs && bun ./test/parse.mjs && bun ./test/sentinel.mjs && bun ./test/persist.mjs && bun ./test/features.mjs && bun ./test/improvements.mjs",
+    "dev": "pi -e ./src/index.ts",
+    "npm-publish": "bun run scripts/npm-publish.ts",
+    "npm-publish:dry": "PILOOP_NPM_DRY_RUN=1 bun run scripts/npm-publish.ts"
   },
   "peerDependencies": {
     "@earendil-works/pi-coding-agent": ">=0.79.0"

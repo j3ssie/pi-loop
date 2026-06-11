@@ -1,6 +1,6 @@
 // Tests the live widget: countdown text + ticker start/stop lifecycle.
 // Run: node test/widget.mjs   (after `npx tsc` has produced dist/)
-import { LoopScheduler } from "../dist/scheduler.js";
+import { LoopScheduler } from "../src/scheduler.ts";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let failures = 0;

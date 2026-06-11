@@ -4,7 +4,7 @@
 import { existsSync, mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { LoopScheduler } from "../dist/scheduler.js";
+import { LoopScheduler } from "../src/scheduler.ts";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let failures = 0;
@@ -36,7 +36,7 @@ function makeHarness(cfg) {
 
 console.log("#5 steering hint");
 {
-	// On by default: a plain prompt gets the NEXT:/LOOP: hint appended.
+	// Opt-in (off by default): when enabled, a plain prompt gets the NEXT:/LOOP: hint appended.
 	const h = makeHarness({ ...base, steerHint: true });
 	h.scheduler.add(fixed(15, "do the work"));
 	await sleep(40);

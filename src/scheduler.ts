@@ -35,8 +35,10 @@ import { readItems } from "./fileutil.js";
 
 /** One-line steering hint appended to loop-fired prompts (skipped if the prompt already teaches it). */
 const STEER_HINT =
-	"\n\n— Automated loop turn. You can steer it: end your reply with `LOOP: done` to stop, " +
-	"`LOOP: now` to run again immediately, or `NEXT: <duration>` (e.g. NEXT: 20m) to set the next delay.";
+	"\n\n— Automated recurring loop turn. This prompt re-runs automatically on its schedule; finishing " +
+	"the task does NOT stop the loop, and you don't need to say anything to keep it going. Only if the " +
+	"recurring loop itself should stop permanently, end your reply with `LOOP: done`. You can also end " +
+	"with `LOOP: now` to run again immediately, or `NEXT: <duration>` (e.g. NEXT: 20m) to change the next delay.";
 
 /** Throttle window for coalescing persistence writes. */
 const PERSIST_THROTTLE_MS = 1_000;

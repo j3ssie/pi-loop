@@ -3,7 +3,7 @@
 import { mkdirSync, mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { resolveSlashTarget } from "../dist/slash.js";
+import { resolveSlashTarget } from "../src/slash.ts";
 
 let failures = 0;
 const assert = (cond, msg) => {

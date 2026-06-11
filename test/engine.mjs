@@ -1,7 +1,7 @@
 // Runtime test of the LoopScheduler core invariants, driven against a fake `pi` that
 // emulates Pi's agent lifecycle (agent_start/agent_end) around each injected message.
 // Run: node test/engine.mjs   (after `npx tsc` has produced dist/)
-import { LoopScheduler } from "../dist/scheduler.js";
+import { LoopScheduler } from "../src/scheduler.ts";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 

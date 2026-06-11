@@ -1,8 +1,11 @@
 # pi-loop
 
+![demo](https://github.com/j3ssie/pi-loop/blob/main/static/loop-demo.png?raw=true)
+
 > **TL;DR — what's an agent loop?** Instead of prompting a coding agent by hand, you design a *loop*: a recurring prompt that fires on a schedule, a file change, or a worklist, and that the agent can steer or stop itself. You go from prompter to loop designer, the agent keeps working between your check-ins.
 >
 > More on the idea: [@steipete](https://x.com/steipete/status/2063697162748260627) · [@mvanhorn](https://x.com/mvanhorn/status/2063865685558903149) · [@0xCodez](https://x.com/0xCodez/status/2064374643729773029)
+
 
 Agentic cron for your Pi session. Re-run a prompt on an interval, a file or directory change, a worklist, or command output, all inside the session you already have open.
 
@@ -65,7 +68,7 @@ After a turn that a loop fired, the **final assistant message** is scanned for c
 | `LOOP: now` | Run again immediately (as soon as the agent is idle). |
 | `LOOP: retry` | Worklist loops: re-run the current item(s) instead of advancing. |
 
-So "loop until CI is green" is just: `/loop check CI; if it's green say LOOP: done`. Every loop-fired prompt gets a one-line reminder of this syntax appended automatically (so even a custom prompt can self-steer); the reminder is skipped when your prompt already mentions `NEXT:`/`LOOP:` (as the built-in default does), and can be turned off with `--loop-steer-hint false`.
+So "loop until CI is green" is just: `/loop check CI; if it's green say LOOP: done`. Sentinels are always parsed; opt in with `--loop-steer-hint true` to also append a one-line reminder of this syntax to every loop-fired prompt (skipped when your prompt already mentions `NEXT:`/`LOOP:`, as the built-in default does). The reminder is off by default because literal models can misread `LOOP: done` as "say this when the task is done" and stop a loop after its first run.
 
 ## Loop over a file, directory, or command
 
@@ -111,7 +114,7 @@ If everything is green and quiet, say so in one line — and if the PR merged, s
 | `--loop-watch-dir-interval` | `2s` | How often `--watch` rescans a directory (a full tree walk). |
 | `--loop-file-max-kb` | `16` | Max KB of file/command contents injected into prompts. |
 | `--loop-cmd-timeout` | `30s` | Timeout for `--cmd` command runs. |
-| `--loop-steer-hint` | `true` | Append a `NEXT:`/`LOOP:` steering hint to loop-fired prompts. |
+| `--loop-steer-hint` | `false` | Append a `NEXT:`/`LOOP:` steering hint to loop-fired prompts. |
 
 (`registerFlag` only supports boolean/string, so numeric flags are passed as strings.)
 

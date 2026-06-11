@@ -1,6 +1,6 @@
 // Tests the /loop argument grammar: quoting, head-anchored flags, new flags, error cases.
 // Run: node test/parse.mjs   (after `npx tsc` has produced dist/)
-import { parseLoopArgs } from "../dist/parse.js";
+import { parseLoopArgs } from "../src/parse.ts";
 
 let failures = 0;
 const assert = (cond, msg) => {

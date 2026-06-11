@@ -49,7 +49,7 @@ export default function (pi: ExtensionAPI) {
 	pi.registerFlag("loop-watch-dir-interval", { type: "string", default: "2s", description: "How often --watch rescans a directory (a full tree walk)" });
 	pi.registerFlag("loop-file-max-kb", { type: "string", default: "16", description: "Max KB of file/command contents injected into prompts" });
 	pi.registerFlag("loop-cmd-timeout", { type: "string", default: "30s", description: "Timeout for --cmd command runs" });
-	pi.registerFlag("loop-steer-hint", { type: "boolean", default: true, description: "Append a NEXT:/LOOP: steering hint to loop-fired prompts" });
+	pi.registerFlag("loop-steer-hint", { type: "boolean", default: false, description: "Append a NEXT:/LOOP: steering hint to loop-fired prompts (off by default — literal models may misread `LOOP: done` as task completion)" });
 
 	const scheduler = new LoopScheduler(pi, {
 		max: numberFlag(pi, "loop-max", 50),
@@ -60,7 +60,7 @@ export default function (pi: ExtensionAPI) {
 		watchDirPollMs: durationFlag(pi, "loop-watch-dir-interval", 2_000),
 		fileMaxBytes: numberFlag(pi, "loop-file-max-kb", 16) * 1024,
 		cmdTimeoutMs: durationFlag(pi, "loop-cmd-timeout", 30_000),
-		steerHint: pi.getFlag("loop-steer-hint") !== false,
+		steerHint: pi.getFlag("loop-steer-hint") === true,
 	});
 
 	pi.registerCommand("loop", {

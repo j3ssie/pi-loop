@@ -1,6 +1,6 @@
 // Tests loop-control sentinel parsing (NEXT:/LOOP: lines in the final assistant message).
 // Run: node test/sentinel.mjs   (after `npx tsc` has produced dist/)
-import { finalAssistantText, parseControls } from "../dist/sentinel.js";
+import { finalAssistantText, parseControls } from "../src/sentinel.ts";
 
 let failures = 0;
 const assert = (cond, msg) => {

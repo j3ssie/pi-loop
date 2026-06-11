@@ -4,7 +4,7 @@
 import { mkdtempSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { LoopScheduler } from "../dist/scheduler.js";
+import { LoopScheduler } from "../src/scheduler.ts";
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let failures = 0;
